@@ -5,11 +5,11 @@ import { motion } from 'framer-motion';
 // Casting motion.div to any to bypass type compatibility issues in the environment
 const MotionDiv = motion.div as any;
 
-// Đường dẫn file ảnh mặc định trong thư mục web của bạn
+// Sử dụng import.meta.url để Vite xử lý và include ảnh vào build
 const defaultPhotos = [
-  "./anh1.jpg",
-  "./anh2.jpg",
-  "./anh3.jpg",
+  new URL('../anh1.jpg', import.meta.url).href,
+  new URL('../anh2.jpg', import.meta.url).href,
+  new URL('../anh3.jpg', import.meta.url).href,
 ];
 
 const PhotoGallery: React.FC = () => {
@@ -37,11 +37,11 @@ const PhotoGallery: React.FC = () => {
           transition={{ delay: index * 0.2 }}
           className="relative group overflow-hidden rounded-xl shadow-lg border-4 border-white transform rotate-2 hover:rotate-0 transition-all duration-300 bg-white"
         >
-          <img 
-            src={src} 
-            alt="Memory" 
-            className="w-full h-80 object-cover" 
-            onError={() => handleImageError(index)} 
+          <img
+            src={src}
+            alt="Memory"
+            className="w-full h-80 object-cover"
+            onError={() => handleImageError(index)}
           />
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-love-600/80 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
             <span className="text-white font-script text-2xl drop-shadow-md">Kỷ niệm {index + 1}</span>

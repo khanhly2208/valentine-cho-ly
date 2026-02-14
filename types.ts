@@ -7,12 +7,12 @@ export interface LetterState {
 export interface Song {
   title: string;
   artist: string;
-  url: string; 
+  url: string;
 }
 
 export const VALENTINE_SONG: Song = {
   title: "Chờ Anh Nhé",
-  artist: "Hoàng Dũng", 
-  // Đường dẫn đến file nhạc bạn để trong thư mục web
-  url: "./nhac.mp3" 
+  artist: "Hoàng Dũng",
+  // Sử dụng import.meta.url để Vite xử lý file nhạc
+  url: new URL('./nhac.mp3', import.meta.url).href
 };
